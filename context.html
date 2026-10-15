@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HIGHRISE — Project Context</title>
+<meta name="description" content="What HIGHRISE is, what inspired it, and how the story website and the game were made.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column like a graphic novel's back matter, with a full-bleed cover up top. Dark by design, to match the comic. */
+:root {
+  --ink: #0d0e11; --panel: #16181d; --line: #2b2e36; --paper: #ece7dc; --muted: #a39d92; --gold: #f2b544; --ember: #e0702a;
+  --display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --body: 'Source Serif 4', Georgia, serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--paper); }
+body { font: 18px/1.65 var(--body); }
+a { color: var(--gold); }
+.hero { position: relative; min-height: 62vh; display: grid; align-items: end; padding: 0 20px 44px; overflow: hidden; }
+.hero picture, .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,17,0.15) 0%, rgba(13,14,17,0.55) 55%, var(--ink) 100%); }
+.hero .in { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; width: 100%; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0; }
+h1 { font: 400 clamp(56px, 12vw, 120px)/.9 var(--display); margin: 12px 0 10px; letter-spacing: .01em; text-wrap: balance; }
+h1 span { color: var(--gold); }
+.lede { font-size: 20px; max-width: 60ch; margin: 0; color: #d9d3c6; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.links a { font: 500 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; color: var(--ink); background: var(--gold); padding: 13px 16px; border-radius: 4px; }
+.links a.ghost { background: transparent; color: var(--paper); border: 1px solid var(--line); }
+.links a:hover, .links a:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
+main { max-width: 860px; margin: 0 auto; padding: 8px 20px 80px; }
+h2 { font: 400 32px/1.1 var(--display); letter-spacing: .02em; margin: 56px 0 12px; }
+h2 small { display: block; font: 500 12px/1 var(--mono); letter-spacing: .2em; color: var(--ember); margin-bottom: 10px; text-transform: uppercase; }
+p { max-width: 66ch; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0 0; }
+.facts div { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
+.facts b { display: block; font: 400 36px/1 var(--display); color: var(--gold); }
+.facts span { font: 13px/1.3 var(--mono); color: var(--muted); }
+.cast { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 18px; }
+.cast figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.cast img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; display: block; }
+.cast figcaption { padding: 12px 14px 16px; font-size: 15px; line-height: 1.5; color: #d6d0c4; }
+.cast figcaption b { display: block; font: 400 20px/1.1 var(--display); color: var(--paper); letter-spacing: .02em; margin-bottom: 4px; }
+.cast figcaption i { font: 12px/1.3 var(--mono); color: var(--gold); font-style: normal; display: block; margin-bottom: 8px; }
+blockquote { margin: 18px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--gold); color: #ddd6c8; }
+.tools { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 0; }
+.tools li { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+.tools li b { font: 500 14px/1.6 var(--mono); color: var(--gold); }
+.tools li p { margin: 0; }
+.wide { margin: 22px 0 0; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
+.wide img { display: block; width: 100%; height: auto; }
+.wide figcaption { font: 13px/1.4 var(--mono); color: var(--muted); padding: 10px 14px; background: var(--panel); }
+footer { border-top: 1px solid var(--line); margin-top: 64px; padding-top: 18px; font: 13px/1.5 var(--mono); color: var(--muted); }
+@media (max-width: 560px) { .tools li { grid-template-columns: 1fr; gap: 4px; } body { font-size: 17px; } }
+@media (prefers-reduced-motion: no-preference) { .hero h1 { animation: rise .8s ease-out both; } @keyframes rise { from { opacity: 0; transform: translateY(14px); } } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <picture><source srcset="images/cover/cover.webp" type="image/webp"><img src="images/cover/cover.jpg" alt=""></picture>
+  <div class="in">
+    <p class="eyebrow">A Meridian City story · Project context</p>
+    <h1>HIGH<span>RISE</span></h1>
+    <p class="lede">An interactive superhero comic where every choice changes what happens, and a video game set on the same night.</p>
+    <nav class="links" aria-label="Project links">
+      <a href="./">Read the story</a>
+      <a href="game.html">Play the game</a>
+      <a class="ghost" href="https://claude.ai/artifact/CDMD1Do1NAdnfpE7YJiqTv">AI prompt log</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h2><small>What it is</small>A choose-your-own-adventure comic</h2>
+  <p>HIGHRISE is a branching superhero story you read like a graphic novel. You pick one of four characters, make three big decisions, and land on one of eight endings for that character. Every choice changes where you go, who you meet, and what you can still save. Each decision runs on a countdown clock, so hesitating is a choice too.</p>
+  <div class="facts">
+    <div><b>4</b><span>playable characters</span></div>
+    <div><b>32</b><span>different endings</span></div>
+    <div><b>78</b><span>illustrated scenes</span></div>
+    <div><b>18</b><span>stages in the game</span></div>
+  </div>
+
+  <h2><small>The story</small>The night the city starts falling</h2>
+  <p>At 11:42 one night a warehouse roof in the Foundry District comes down, and Mateo Reyes holds it up. He is <b>Highrise</b>: he can turn his own strength into glowing golden steel, beams and braces and walls that hold a collapsing building together. Then Crown Bridge starts to move, and it becomes clear the city is not failing by accident.</p>
+  <p>The man behind it is <b>Adrian Voss, the Architect</b>, the engineer who built half of Meridian City and knows exactly where every structure is weakest. He has planted four hundred hidden release drones across forty-one sites. Tonight he means to prove that a city built on shortcuts deserves to come down.</p>
+
+  <h2><small>Who you play</small>Four sides of the same night</h2>
+  <div class="cast">
+    <figure><picture><source srcset="images/characters/highrise/portrait.webp" type="image/webp"><img src="images/characters/highrise/portrait.jpg" alt="Highrise"></picture>
+      <figcaption><b>HIGHRISE</b><i>The hero · Mateo Reyes</i>Holds the city together with golden structural energy. Every beam costs him.</figcaption></figure>
+    <figure><picture><source srcset="images/characters/kai/portrait.webp" type="image/webp"><img src="images/characters/kai/portrait.jpg" alt="Kai"></picture>
+      <figcaption><b>SPARK</b><i>The sidekick · Kai Cruz, 16</i>No powers. Tech, parkour and nerve. Talks Highrise through it on comms.</figcaption></figure>
+    <figure><picture><source srcset="images/characters/architect/portrait.webp" type="image/webp"><img src="images/characters/architect/portrait.jpg" alt="The Architect"></picture>
+      <figcaption><b>THE ARCHITECT</b><i>The villain · Adrian Voss</i>Warned the city for years. Now he is making it listen.</figcaption></figure>
+    <figure><picture><source srcset="images/characters/bystander/portrait.webp" type="image/webp"><img src="images/characters/bystander/portrait.jpg" alt="Greg"></picture>
+      <figcaption><b>GREG</b><i>The bystander · Greg Pulaski, 41</i>Drives a snack van onto the wrong bridge on the wrong night.</figcaption></figure>
+  </div>
+
+  <h2><small>Inspiration</small>Where the idea came from</h2>
+  <p>HIGHRISE came from gritty, cinematic superhero graphic novels, and from wanting a hero whose power is holding things together instead of smashing them. If the hero builds, the danger has to be the city itself breaking, so the villain became an engineer who uses his knowledge of how buildings fail as a weapon.</p>
+  <p>I wanted the choices to really matter, so every branch goes to a different place with different people, and no two endings happen in the same room. The video game was inspired by <i>Teenage Mutant Ninja Turtles Arcade: Wrath of the Mutants</i>, which is where the side-scrolling brawler started, and by <i>Call of Duty</i> for the first-person mode.</p>
+
+  <h2><small>The game</small>HIGHRISE: Night Shift</h2>
+  <p>The game tells the hero's side of the same night. You play it in first person, or in the original 2D side-scroller it started as. It runs in one HTML file in the browser.</p>
+  <ul>
+    <li><b>18 stages</b> across four chapters, and you fight the Architect three times, each fight harder than the last.</li>
+    <li><b>Game modes:</b> Story, Survival, Time Trial, Hardcore, Practice Range, Boss Rush, One Shot, Arms Race and a Daily Challenge.</li>
+    <li><b>Co-op:</b> add a friend by code and play together.</li>
+    <li>A shop, locker, quests and a hero pass, with voiced comms from Kai, Priya and the Architect.</li>
+  </ul>
+  <figure class="wide"><picture><source srcset="images/scenes/endings/last-stand.webp" type="image/webp"><img src="images/scenes/endings/last-stand.jpg" alt="Highrise holding up a collapsing structure with golden beams"></picture>
+    <figcaption>The Last Beam: one of the eight endings on the hero's path.</figcaption></figure>
+
+  <h2><small>How it was made</small>Built with AI tools</h2>
+  <p>I designed the story, the characters and how everything should play, then directed AI tools to build it. Every prompt is in the <a href="https://claude.ai/artifact/CDMD1Do1NAdnfpE7YJiqTv">prompt log</a>.</p>
+  <ul class="tools">
+    <li><b>Claude Code</b><p>Built the story website and the game from my prompts, and tested them.</p></li>
+    <li><b>ChatGPT</b><p>Painted the artwork: every story illustration, character, robot and boss, the title screen and the shop skins.</p></li>
+    <li><b>Kokoro + Chatterbox</b><p>Open-source voice models, run on my own computer, that recorded the characters' voices.</p></li>
+  </ul>
+
+  <footer>HIGHRISE · 2026 · <a href="./">Story</a> · <a href="game.html">Game</a></footer>
+</main>
+</body>
+</html>
